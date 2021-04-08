@@ -22,6 +22,15 @@ export class PokemonService {
     );
   }
 
+  getPokemon(id:number):Observable<Pokemon>{
+    const getUrl = `${this.apiUrl}/pokemons/${id}`
+
+    return this.http.get<Pokemon>(getUrl).pipe(
+      catchError(this.handleError<Pokemon>('get Pokemon',undefined))
+    );
+  }
+
+
   private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {
     return (error: any): Observable<T> => {
 
