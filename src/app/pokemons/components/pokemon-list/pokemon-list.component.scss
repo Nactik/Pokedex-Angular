@@ -3,6 +3,11 @@ mat-list-item{
 }
 
 .pokemon-list{
-  height: calc(100vh - 8px - 57px);
+  height: calc(100vh - 8px - 57px - 1em);
   overflow: auto;
+}
+
+.searchPokemon{
+  padding-left: 1em;
+  padding-top: 1em;
 }
