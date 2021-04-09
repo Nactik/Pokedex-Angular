@@ -1,3 +1,8 @@
 mat-list-item{
   cursor: pointer;
 }
+
+.pokemon-list{
+  height: calc(100% - 8px);
+  overflow: auto;
+}
