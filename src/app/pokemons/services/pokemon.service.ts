@@ -15,7 +15,7 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(offset?: number, limit?:number): Observable<PagedData<Pokemon>> {
+  getPokemons(offset?: number, limit?:number, search?:string): Observable<PagedData<Pokemon>> {
     const getUrl = `${this.apiUrl}/pokemons`;
     let params = new HttpParams();
 
@@ -25,6 +25,8 @@ export class PokemonService {
     if(limit) {
       params = params.set('limit', `${limit}`);
     }
+    if(search)
+      params = params.set('search',`${search}`)
 
     return this.http.get<PagedData<Pokemon>>(getUrl, {params}).pipe(
 

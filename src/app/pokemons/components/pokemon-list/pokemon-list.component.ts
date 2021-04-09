@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pokemon } from '../../models/pokemon-model';
 import { PokemonService } from '../../services/pokemon.service';
 
@@ -9,18 +9,23 @@ import { PokemonService } from '../../services/pokemon.service';
 })
 export class PokemonListComponent implements OnInit {
 
-  pokemons: Pokemon[] = [];
-  constructor(private pokemonService:PokemonService) { }
-
+  @Input() search?:string;
   @Output() pokemonSelected = new EventEmitter<number>();
+
+  pokemons: Pokemon[] = [];
+
+  constructor(private pokemonService:PokemonService) { }
 
   ngOnInit(): void {
     this.getPokemons(0,20);
   }
 
-  private getPokemons(offset?:number, limit?:number):void{
-    this.pokemonService.getPokemons(offset,limit).subscribe(resp => {
-        this.pokemons.push(...resp.data)
+  private getPokemons(offset?:number, limit?:number, search?:string):void{
+    this.pokemonService.getPokemons(offset,limit,search).subscribe(resp => {
+      if(search)
+        this.pokemons = resp.data;
+      else
+        this.pokemons.push(...resp.data);
     });
   }
 
@@ -28,11 +33,15 @@ export class PokemonListComponent implements OnInit {
     const offset: number = this.pokemons.length;
     const limit:number = 20;
 
-    this.getPokemons(offset,limit);
+    this.getPokemons(offset,limit, this.search);
   }
 
   onSelectedPokemon(id:number){
     this.pokemonSelected.emit(id);
+  }
+
+  searchPokemons(search:string){
+    this.getPokemons(0,20,search);
   }
 
 }

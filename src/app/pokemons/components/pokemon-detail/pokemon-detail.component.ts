@@ -25,10 +25,8 @@ export class PokemonDetailComponent implements OnChanges {
   }
 
   private getPokemon(id?:number){
-    if(!id)
-      id=0; //c'est pas beau mais oklm
-
-    this.pokemonService.getPokemon(id).subscribe(pokemon => this.pokemon = pokemon);
+    if(id)
+      this.pokemonService.getPokemon(id).subscribe(pokemon => this.pokemon = pokemon);
   }
 
   goBack():void{

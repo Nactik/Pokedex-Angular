@@ -13,6 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PokedexComponent } from './components/pokedex/pokedex.component';
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { FormsModule } from '@angular/forms'
 
 
 
@@ -35,7 +38,10 @@ import { PokedexComponent } from './components/pokedex/pokedex.component';
     MatIconModule,
     MatButtonModule,
     InfiniteScrollModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule
   ]
 })
 
