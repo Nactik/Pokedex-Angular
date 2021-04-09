@@ -9,7 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button'
+import { MatButtonModule } from '@angular/material/button';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -29,7 +30,8 @@ import { MatButtonModule } from '@angular/material/button'
     MatGridListModule,
     MatChipsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    InfiniteScrollModule
   ]
 })
 
