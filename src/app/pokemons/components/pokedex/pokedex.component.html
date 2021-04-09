@@ -2,7 +2,7 @@
   <mat-sidenav opened mode="side" class="pokemon-menu">
     <pkmn-pokemon-list (pokemonSelected)="displayPokemon($event)"></pkmn-pokemon-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="centered">
     <pkmn-pokemon-detail [id]="currentId"></pkmn-pokemon-detail>
   </mat-sidenav-content>
 </mat-sidenav-container>
