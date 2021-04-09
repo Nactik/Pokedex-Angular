@@ -13,11 +13,20 @@ export class PokemonListComponent implements OnInit {
   constructor(private pokemonService:PokemonService) { }
 
   ngOnInit(): void {
-    this.getPokemons();
+    this.getPokemons(0,20);
   }
 
-  private getPokemons():void{
-    this.pokemonService.getPokemons().subscribe(resp => this.pokemons = resp.data);
+  private getPokemons(offset?:number, limit?:number):void{
+    this.pokemonService.getPokemons(offset,limit).subscribe(resp => {
+        this.pokemons.push(...resp.data)
+    });
+  }
+
+  onScroll():void{
+    const offset: number = this.pokemons.length;
+    const limit:number = 20;
+
+    this.getPokemons(offset,limit);
   }
 
 }

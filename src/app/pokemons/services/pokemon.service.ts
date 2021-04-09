@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { PokemonListComponent } from '../components/pokemon-list/pokemon-list.component';
@@ -15,9 +15,20 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(): Observable<PagedData<Pokemon>> {
+  getPokemons(offset?: number, limit?:number): Observable<PagedData<Pokemon>> {
     const getUrl = `${this.apiUrl}/pokemons`;
-    return this.http.get<PagedData<Pokemon>>(getUrl).pipe(
+    let params = new HttpParams();
+
+    if(offset) {
+      params = params.set('offset', `${offset}`);
+    }
+    if(limit) {
+      params = params.set('limit', `${limit}`);
+    }
+
+    return this.http.get<PagedData<Pokemon>>(getUrl, {params}).pipe(
+
+      tap(result => console.log(result)),
       catchError(this.handleError<PagedData<Pokemon>>('get Pokemon',undefined))
     );
   }
