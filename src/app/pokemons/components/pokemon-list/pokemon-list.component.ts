@@ -22,10 +22,10 @@ export class PokemonListComponent implements OnInit {
 
   private getPokemons(offset?:number, limit?:number, search?:string):void{
     this.pokemonService.getPokemons(offset,limit,search).subscribe(resp => {
-      if(search)
-        this.pokemons = resp.data;
-      else
-        this.pokemons.push(...resp.data);
+      if( !offset )
+          this.pokemons = resp.data
+        else
+          this.pokemons.push(...resp.data)
     });
   }
 
