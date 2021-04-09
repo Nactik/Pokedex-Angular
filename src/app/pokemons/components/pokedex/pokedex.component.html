@@ -1,8 +1,8 @@
 <mat-sidenav-container  class="pokedex-container">
   <mat-sidenav opened mode="side" class="pokemon-menu">
-    <pkmn-pokemon-list></pkmn-pokemon-list>
+    <pkmn-pokemon-list (pokemonSelected)="displayPokemon($event)"></pkmn-pokemon-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <pkmn-pokemon-detail></pkmn-pokemon-detail>
+    <pkmn-pokemon-detail [id]="currentId"></pkmn-pokemon-detail>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Pokemon } from '../../models/pokemon-model';
 import { PokemonService } from '../../services/pokemon.service';
 
@@ -11,6 +11,8 @@ export class PokemonListComponent implements OnInit {
 
   pokemons: Pokemon[] = [];
   constructor(private pokemonService:PokemonService) { }
+
+  @Output() pokemonSelected = new EventEmitter<number>();
 
   ngOnInit(): void {
     this.getPokemons(0,20);
@@ -27,6 +29,10 @@ export class PokemonListComponent implements OnInit {
     const limit:number = 20;
 
     this.getPokemons(offset,limit);
+  }
+
+  onSelectedPokemon(id:number){
+    this.pokemonSelected.emit(id);
   }
 
 }
