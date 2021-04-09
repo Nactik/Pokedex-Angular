@@ -21,6 +21,7 @@ export class PokemonDetailComponent implements OnChanges {
     ) { }
 
   ngOnChanges(): void {
+    this.pokemon = undefined;
     this.getPokemon(this.id);
   }
 
